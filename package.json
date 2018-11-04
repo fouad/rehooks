@@ -1,0 +1,13 @@
+{
+  "name": "rehooks",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.4.3",
+    "lint-staged": "^8.0.4",
+    "prettier": "^1.14.3"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {}
+}
