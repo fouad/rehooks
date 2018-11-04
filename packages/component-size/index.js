@@ -13,6 +13,10 @@ function getSize(el) {
 }
 
 function useComponentSize(ref) {
+  if (!ref || !ref.current) {
+    return { width: 0, height: 0 }
+  }
+
   let [ComponentSize, setComponentSize] = useState(getSize(ref.current))
 
   function handleResize() {
@@ -26,6 +30,7 @@ function useComponentSize(ref) {
 
     if (ResizeObserver) {
       let resizeObserver = new ResizeObserver(() => handleResize())
+
       resizeObserver.observe(ref.current)
 
       return () => {
@@ -34,12 +39,11 @@ function useComponentSize(ref) {
       }
     } else {
       window.addEventListener('resize', handleResize)
-      
+
       return () => {
-        window.removeEventListener('resize', handleResize) 
+        window.removeEventListener('resize', handleResize)
       }
     }
-    
   }, [])
 
   return ComponentSize

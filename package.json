@@ -9,5 +9,8 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {}
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "test": "lerna exec -- yarn test"
+  }
 }

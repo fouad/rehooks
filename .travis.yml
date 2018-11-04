@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - 8
+
+script:
+  - yarn test
+  - script/check-versions
+
+after_success:
+  # this will short-circuit the publish step if it fails to interpolate $NPM_API_KEY
+  - npm config set "//registry.npmjs.org/:_authToken=\${NPM_API_KEY}"
+
+deploy:
+  # publish release on master
+  - provider: script
+    script: scripts/release
+    skip_cleanup: true
+    on:
+      branch: master
+      tags: false

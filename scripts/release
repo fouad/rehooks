@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+echo "📦  Publishing latest release..."
+
+# note: try-publish should exit cleanly if it detects a duplicate
+# published version
+$(npm bin)/lerna exec -- $(pwd)/scripts/try-publish
